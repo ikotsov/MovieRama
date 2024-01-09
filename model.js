@@ -41,7 +41,8 @@ export const loadMovies = async (page) => {
   const params = createMovieListUrlParams(page);
   try {
     const data = await fetchJsonData(`${API_URL_MOVIE_LIST}?${params}`);
-    state.movies = data.results.map(createMovie);
+    const newMovies = data.results.map(createMovie);
+    state.movies = [...state.movies, ...newMovies];
   } catch (error) {
     console.error(`fetchMovies ${error} 💥💥💥💥`);
     throw error;
