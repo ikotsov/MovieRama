@@ -1,4 +1,4 @@
-import { loadGenres, loadMovies, state } from './model.js';
+import { loadGenres, loadMovies, state } from './src/model.js';
 
 const app = async () => {
   await loadGenres();
