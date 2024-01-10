@@ -5,7 +5,7 @@
 
   --color-black: #000;
   --color-white: #fff;
-  --color-white-1: rgba(255, 255, 255, 0.4);
+  --color-white-1: rgba(255, 255, 255, 0.2);
 }
 
 * {
@@ -78,6 +78,7 @@ body {
 
 .movie__picture {
   height: 60rem;
+  border-bottom: 1px solid var(--color-white-1);
   border-top-left-radius: 0.7rem;
   border-top-right-radius: 0.7rem;
   background-size: cover;
