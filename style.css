@@ -107,3 +107,12 @@ body {
 .movie__description {
   font-size: 1.5rem;
 }
+
+.loading-indicator {
+  opacity: 0;
+}
+
+.loading-indicator.show {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
