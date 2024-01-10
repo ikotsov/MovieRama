@@ -38,7 +38,7 @@ const createMovie = (movie) => {
 };
 
 export const loadMovies = async () => {
-  const params = createMovieListUrlParams(state.page++);
+  const params = createMovieListUrlParams(++state.page);
   try {
     const data = await fetchJsonData(`${API_URL_MOVIE_LIST}?${params}`);
     const newMovies = data.results.map(createMovie);
