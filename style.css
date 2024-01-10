@@ -1,0 +1,22 @@
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  padding: 2.5rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: sans-serif;
+}
