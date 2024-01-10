@@ -1,4 +1,6 @@
 :root {
+  --color-error: #ff0000;
+
   --color-black: #000;
   --color-white: #fff;
 }
@@ -19,4 +21,14 @@ body {
   background-color: var(--color-black);
   color: var(--color-white);
   font-family: sans-serif;
+}
+
+/* COMPONENTS  */
+.error {
+  padding: 5rem 4rem;
+
+  p {
+    color: var(--color-error);
+    font-size: 1.8rem;
+  }
 }
