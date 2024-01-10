@@ -15,6 +15,6 @@ const controlMovies = async () => {
 };
 
 const app = () => {
-  controlMovies();
+  MoviesView.attachRenderHandler(controlMovies);
 };
 app();
