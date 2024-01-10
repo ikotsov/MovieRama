@@ -22,7 +22,7 @@ class MoviesView {
           </div>
           <div class="movie__row">
             <p>Votes:</p>
-            <p>${movie.releaseYear}</p>
+            <p>${movie.votes}</p>
           </div>
         </div>
         <p class="movie__description">${movie.description}</p>
