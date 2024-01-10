@@ -1,10 +1,20 @@
 import { loadGenres, loadMovies, state } from './src/model.js';
+import MoviesView from './src/MoviesView.js';
 
-const app = async () => {
-  await loadGenres();
-  console.log('genres', state.genres);
+const controlMovies = async () => {
+  try {
+    MoviesView.renderSpinner();
 
-  await loadMovies();
-  console.log('movies', state.movies);
+    await loadGenres();
+    await loadMovies();
+
+    MoviesView.render(state.movies);
+  } catch (err) {
+    MoviesView.renderError();
+  }
+};
+
+const app = () => {
+  controlMovies();
 };
 app();
