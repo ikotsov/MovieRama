@@ -4,7 +4,7 @@ const app = async () => {
   await loadGenres();
   console.log('genres', state.genres);
 
-  await loadMovies(state.page);
+  await loadMovies();
   console.log('movies', state.movies);
 };
 app();

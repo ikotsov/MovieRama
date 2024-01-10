@@ -7,7 +7,7 @@ import {
 import { fetchJsonData } from './fetchJsonData.js';
 
 export const state = {
-  page: 1,
+  page: 0,
   genres: [],
   movies: [],
 };
@@ -37,8 +37,8 @@ const createMovie = (movie) => {
   };
 };
 
-export const loadMovies = async (page) => {
-  const params = createMovieListUrlParams(page);
+export const loadMovies = async () => {
+  const params = createMovieListUrlParams(state.page++);
   try {
     const data = await fetchJsonData(`${API_URL_MOVIE_LIST}?${params}`);
     const newMovies = data.results.map(createMovie);
