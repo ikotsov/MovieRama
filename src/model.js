@@ -44,7 +44,6 @@ export const loadMovies = async (page) => {
     const newMovies = data.results.map(createMovie);
     state.movies = [...state.movies, ...newMovies];
   } catch (error) {
-    console.error(`fetchMovies ${error} 💥💥💥💥`);
     throw error;
   }
 };
@@ -61,7 +60,6 @@ export const loadGenres = async () => {
     const data = await fetchJsonData(`${API_URL_GENRE_LIST}?${params}`);
     state.genres = data.genres;
   } catch (error) {
-    console.error(`fetchMovies ${error} 💥💥💥💥`);
     throw error;
   }
 };
