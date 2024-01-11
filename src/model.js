@@ -4,7 +4,7 @@ import {
   API_URL_MOVIE_LIST,
   LANGUAGE_CODE,
 } from './config.js';
-import { fetchJsonData } from './fetchJsonData.js';
+import { fetchJsonData } from './helpers.js';
 
 export const state = {
   page: 0,
