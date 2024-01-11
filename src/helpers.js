@@ -10,3 +10,15 @@ export const fetchJsonData = async function (url) {
     throw error;
   }
 };
+
+export const debounce = (callback, delay = 30000) => {
+  let timer;
+
+  return (...args) => {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
+};
