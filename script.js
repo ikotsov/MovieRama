@@ -1,7 +1,6 @@
 import { loadGenres, loadMovies, state } from './src/model.js';
 import MoviesView from './src/MoviesView.js';
 import BottomScreenObserver from './src/BottomScreenObserver.js';
-import {  MOVIES_PER_PAGE } from './src/config.js';
 
 const controlMovies = async () => {
   try {
