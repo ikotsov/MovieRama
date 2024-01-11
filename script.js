@@ -1,5 +1,7 @@
 import { loadGenres, loadMovies, state } from './src/model.js';
 import MoviesView from './src/MoviesView.js';
+import BottomScreenObserver from './src/BottomScreenObserver.js';
+import {  MOVIES_PER_PAGE } from './src/config.js';
 
 const controlMovies = async () => {
   try {
@@ -14,7 +16,18 @@ const controlMovies = async () => {
   }
 };
 
+const controlMoreMovies = async () => {
+  try {
+    await loadMovies();
+  
+    MoviesView.renderMore(state.movies.slice(-20));
+  } catch (err) {
+    MoviesView.renderError();
+  }
+};
+
 const app = () => {
   MoviesView.attachRenderHandler(controlMovies);
+  BottomScreenObserver.attachRenderHandler(controlMoreMovies);
 };
 app();
