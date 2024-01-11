@@ -5,4 +5,6 @@ export const API_URL_GENRE_LIST = 'https://api.themoviedb.org/3/genre/movie/list
 
 export const URL_MOVIE_IMAGE = 'https://image.tmdb.org/t/p/w500';
 
+export const URL_MOVIE_SEARCH = 'https://api.themoviedb.org/3/search/movie';
+
 export const LANGUAGE_CODE = 'en-US';
