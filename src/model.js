@@ -80,6 +80,7 @@ const createSearchResultsParams = (query, page) => {
 };
 
 export const loadSearchResults = async (query) => {
+  state.search.query = query;
   const params = createSearchResultsParams(query, ++state.search.page);
   try {
     const data = await fetchJsonData(`${URL_MOVIE_SEARCH}?${params}`);
