@@ -4,6 +4,7 @@ class MoviesView {
   _data;
   _parentElement = document.querySelector('.movies');
   _errorMessage = 'An error happened 💥';
+  _noMoviesMessage = 'No movies found 😢';
 
   _generateMovieMarkup(movie) {
     return `
@@ -65,6 +66,12 @@ class MoviesView {
 
   renderError(message = this._errorMessage) {
     const markup = `<div class="error"><p>${message}</p></div>`;
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderNoMoviesFound(message = this._noMoviesMessage) {
+    const markup = `<div class="no-movies"><p>${message}</p></div>`;
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
