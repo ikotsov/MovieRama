@@ -1,6 +1,7 @@
-import { loadGenres, loadMovies, state } from './src/model.js';
+import { loadGenres, loadMovies, loadSearchResults, state } from './src/model.js';
 import MoviesView from './src/views/MoviesView.js';
 import BottomScreenObserver from './src/BottomScreenObserver.js';
+import SearchFormView from './src/views/SearchFormView.js';
 
 const controlMovies = async () => {
   try {
@@ -25,8 +26,22 @@ const controlMoreMovies = async () => {
   }
 };
 
+const controlSearchResults = async function (query) {
+  try {
+    MoviesView.renderSpinner();
+
+    loadSearchResults(query);
+
+    MoviesView.render(state.search.results);
+  } catch (err) {
+    console.log(err);
+    MoviesView.renderError();
+  }
+};
+
 const app = () => {
   MoviesView.attachRenderHandler(controlMovies);
   BottomScreenObserver.attachRenderHandler(controlMoreMovies);
+  SearchFormView.attachOnTypeHandler(controlSearchResults);
 };
 app();
