@@ -18,16 +18,6 @@ const controlMovies = async () => {
   }
 };
 
-const controlMoreMovies = async () => {
-  try {
-    await loadMovies();
-
-    MoviesView.render(state.movies.slice(-20), true);
-  } catch (err) {
-    MoviesView.renderError();
-  }
-};
-
 const controlSearchResults = async function (query) {
   try {
     MoviesView.renderSpinner();
@@ -43,9 +33,25 @@ const controlSearchResults = async function (query) {
   }
 };
 
+const controlBottomReached = async () => {
+  try {
+    const hasQueried = state.search.query !== '';
+    if (hasQueried) {
+      await loadSearchResults(state.search.query);
+
+      MoviesView.render(state.search.results.slice(-20), true);
+    } else {
+      await loadMovies();
+
+      MoviesView.render(state.movies.slice(-20), true);
+    }
+  } catch (err) {}
+};
+
 const app = () => {
   MoviesView.attachRenderHandler(controlMovies);
-  BottomScreenObserver.attachRenderHandler(controlMoreMovies);
   SearchFormView.attachOnTypeHandler(controlSearchResults);
+
+  BottomScreenObserver.attachRenderHandler(controlBottomReached);
 };
 app();
