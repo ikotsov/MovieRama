@@ -1,4 +1,4 @@
-class SearchFormHandler {
+class SearchFormView {
   _formElement = document.querySelector('.search');
   _inputElement = document.querySelector('.search__field');
 
@@ -19,4 +19,4 @@ class SearchFormHandler {
   }
 }
 
-export default new SearchFormHandler();
+export default new SearchFormView();
