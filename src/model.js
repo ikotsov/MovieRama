@@ -10,6 +10,11 @@ export const state = {
   page: 0,
   genres: [],
   movies: [],
+  search: {
+    query: '',
+    results: [],
+    page: 0,
+  },
 };
 
 const createMovieListUrlParams = (page) => {
