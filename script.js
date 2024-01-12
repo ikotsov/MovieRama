@@ -1,6 +1,6 @@
+import BottomScreenObserver from './src/BottomScreenObserver.js';
 import { loadGenres, loadMovies, loadSearchResults, state } from './src/model.js';
 import MoviesView from './src/views/MoviesView.js';
-import BottomScreenObserver from './src/BottomScreenObserver.js';
 import SearchFormView from './src/views/SearchFormView.js';
 
 const controlMovies = async () => {
@@ -9,6 +9,8 @@ const controlMovies = async () => {
 
     await loadGenres();
     await loadMovies();
+
+    if (state.movies.length === 0) return MoviesView.renderNoMoviesFound();
 
     MoviesView.render(state.movies);
   } catch (err) {
@@ -19,7 +21,7 @@ const controlMovies = async () => {
 const controlMoreMovies = async () => {
   try {
     await loadMovies();
-  
+
     MoviesView.renderMore(state.movies.slice(-20));
   } catch (err) {
     MoviesView.renderError();
@@ -30,7 +32,9 @@ const controlSearchResults = async function (query) {
   try {
     MoviesView.renderSpinner();
 
-    loadSearchResults(query);
+    await loadSearchResults(query);
+
+    if (state.search.results.length === 0) return MoviesView.renderNoMoviesFound();
 
     MoviesView.render(state.search.results);
   } catch (err) {
