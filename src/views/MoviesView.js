@@ -9,7 +9,9 @@ class MoviesView {
   _generateMovieMarkup(movie) {
     return `
     <article class="movie">
-      <div class="movie__picture" style="background-image: url('${URL_MOVIE_IMAGE}${movie.poster}')"></div>
+      <div class="movie__picture" style="background-image: url('${URL_MOVIE_IMAGE}${
+      movie.poster
+    }')"></div>
       <div class="movie__content">
         <h3 class="movie__title">${movie.title}</h3>
         <div class="movie__info">
@@ -43,19 +45,16 @@ class MoviesView {
     window.addEventListener('load', handler);
   }
 
-  render(data) {
+  render(data, append = false) {
     this._data = data;
     const markup = this._generateMarkup();
 
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  renderMore(data) {
-    this._data = data;
-    const markup = this._generateMarkup();
-
-    this._parentElement.insertAdjacentHTML('beforeend', markup);
+    if (append) {
+      this._parentElement.insertAdjacentHTML('beforeend', markup);
+    } else {
+      this._clear();
+      this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
   }
 
   renderSpinner() {

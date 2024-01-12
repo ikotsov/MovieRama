@@ -22,7 +22,7 @@ const controlMoreMovies = async () => {
   try {
     await loadMovies();
 
-    MoviesView.renderMore(state.movies.slice(-20));
+    MoviesView.render(state.movies.slice(-20), true);
   } catch (err) {
     MoviesView.renderError();
   }
