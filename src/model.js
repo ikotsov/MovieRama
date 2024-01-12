@@ -85,7 +85,7 @@ export const loadSearchResults = async (query) => {
   try {
     const data = await fetchJsonData(`${URL_MOVIE_SEARCH}?${params}`);
     const newResults = data.results.map(createMovie);
-    state.search.results = [...state.search.results, ...newResults];
+    state.search.results = [...newResults];
   } catch (error) {
     throw error;
   }
