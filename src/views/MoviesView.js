@@ -1,4 +1,4 @@
-import { URL_MOVIE_IMAGE } from './config.js';
+import { URL_MOVIE_IMAGE } from '../config.js';
 
 class MoviesView {
   _data;

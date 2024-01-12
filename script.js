@@ -1,5 +1,5 @@
 import { loadGenres, loadMovies, state } from './src/model.js';
-import MoviesView from './src/MoviesView.js';
+import MoviesView from './src/views/MoviesView.js';
 import BottomScreenObserver from './src/BottomScreenObserver.js';
 
 const controlMovies = async () => {
