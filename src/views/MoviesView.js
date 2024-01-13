@@ -3,7 +3,7 @@ import { URL_MOVIE_IMAGE } from '../config.js';
 class MoviesView {
   #data;
   #parentElement = document.querySelector('.movies');
-  #errorMessage = 'An error happened 💥';
+  #errorMessage = 'An error occurred 💥';
   #noMoviesMessage = 'No movies found 😢';
 
   #generateMovieMarkup(movie) {
