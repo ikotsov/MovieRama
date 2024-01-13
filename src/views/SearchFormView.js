@@ -1,19 +1,19 @@
 class SearchFormView {
-  _formElement = document.querySelector('.search');
-  _inputElement = document.querySelector('.search__field');
+  #formElement = document.querySelector('.search');
+  #inputElement = document.querySelector('.search__field');
 
-  _preventDefault() {
-    this._formElement.addEventListener('submit', (e) => {
+  #preventDefault() {
+    this.#formElement.addEventListener('submit', (e) => {
       e.preventDefault();
     });
   }
 
   constructor() {
-    this._preventDefault();
+    this.#preventDefault();
   }
 
   attachOnTypeHandler(handler) {
-    this._inputElement.addEventListener('input', (e) => {
+    this.#inputElement.addEventListener('input', (e) => {
       handler(e.target.value);
     });
   }

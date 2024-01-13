@@ -1,20 +1,20 @@
 class BottomScreenObserver {
-  _loadingIndicator = document.querySelector('.bottom-loader');
+  #loadingIndicator = document.querySelector('.bottom-loader');
 
-  _onScrollHandler(handler) {
+  #onScrollHandler(handler) {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     const hasReachedBottom = scrollTop + clientHeight >= scrollHeight;
     
     if (hasReachedBottom) {
-      this._loadingIndicator.classList.add('show');
+      this.#loadingIndicator.classList.add('show');
       handler();
     } else {
-      this._loadingIndicator.classList.remove('show');
+      this.#loadingIndicator.classList.remove('show');
     }
   }
 
   attachRenderHandler(handler) {
-    window.addEventListener('scroll', () => this._onScrollHandler(handler));  }
+    window.addEventListener('scroll', () => this.#onScrollHandler(handler));  }
 }
 
 export default new BottomScreenObserver();

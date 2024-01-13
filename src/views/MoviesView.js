@@ -1,12 +1,12 @@
 import { URL_MOVIE_IMAGE } from '../config.js';
 
 class MoviesView {
-  _data;
-  _parentElement = document.querySelector('.movies');
-  _errorMessage = 'An error happened 💥';
-  _noMoviesMessage = 'No movies found 😢';
+  #data;
+  #parentElement = document.querySelector('.movies');
+  #errorMessage = 'An error happened 💥';
+  #noMoviesMessage = 'No movies found 😢';
 
-  _generateMovieMarkup(movie) {
+  #generateMovieMarkup(movie) {
     return `
     <article class="movie">
       <div class="movie__picture" style="background-image: url('${URL_MOVIE_IMAGE}${
@@ -33,12 +33,12 @@ class MoviesView {
     </article>`;
   }
 
-  _generateMarkup() {
-    return this._data.map((movie) => this._generateMovieMarkup(movie)).join('');
+  #generateMarkup() {
+    return this.#data.map((movie) => this.#generateMovieMarkup(movie)).join('');
   }
 
-  _clear() {
-    this._parentElement.innerHTML = '';
+  #clear() {
+    this.#parentElement.innerHTML = '';
   }
 
   attachRenderHandler(handler) {
@@ -46,33 +46,33 @@ class MoviesView {
   }
 
   render(data, append = false) {
-    this._data = data;
-    const markup = this._generateMarkup();
+    this.#data = data;
+    const markup = this.#generateMarkup();
 
     if (append) {
-      this._parentElement.insertAdjacentHTML('beforeend', markup);
+      this.#parentElement.insertAdjacentHTML('beforeend', markup);
     } else {
-      this._clear();
-      this._parentElement.insertAdjacentHTML('afterbegin', markup);
+      this.#clear();
+      this.#parentElement.insertAdjacentHTML('afterbegin', markup);
     }
   }
 
   renderSpinner() {
     const markup = `<div class="spinner"></div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderError(message = this._errorMessage) {
+  renderError(message = this.#errorMessage) {
     const markup = `<div class="error"><p>${message}</p></div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderNoMoviesFound(message = this._noMoviesMessage) {
+  renderNoMoviesFound(message = this.#noMoviesMessage) {
     const markup = `<div class="no-movies"><p>${message}</p></div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }
 
