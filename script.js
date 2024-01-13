@@ -44,7 +44,9 @@ const controlBottomReached = async () => {
 
       MoviesView.render(state.movies.slice(-20), true);
     }
-  } catch (error) {}
+  } catch (error) {
+    // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
+  }
 };
 
 const app = () => {
