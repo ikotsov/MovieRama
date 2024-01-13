@@ -8,6 +8,7 @@ import {
 } from './src/model.js';
 import MoviesView from './src/views/MoviesView.js';
 import SearchFormView from './src/views/SearchFormView.js';
+import { debounce } from './src/helpers.js';
 
 const controlMovies = async () => {
   try {
@@ -24,10 +25,8 @@ const controlMovies = async () => {
   }
 };
 
-const controlSearchResults = async function (query) {
+const handleLoadSearchResults = async (query) => {
   try {
-    MoviesView.renderSpinner();
-
     await loadSearchResults(query);
 
     if (state.search.results.length === 0) return MoviesView.renderNoMoviesFound();
@@ -36,6 +35,14 @@ const controlSearchResults = async function (query) {
   } catch (error) {
     MoviesView.renderError();
   }
+}
+
+const loadSearchResultsDebounced = debounce(handleLoadSearchResults, 500);
+
+const controlSearchResults = (query) => {
+  MoviesView.renderSpinner();
+  
+  loadSearchResultsDebounced(query);
 };
 
 const EMPTY_STRING = '';
