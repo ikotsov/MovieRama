@@ -105,3 +105,14 @@ export const loadSearchResults = async (query) => {
     throw error;
   }
 };
+
+export const getItemsToRender = (options = { isSearchResults: false }) => {
+  const items = options.isSearchResults ? state.search.results : state.movies;
+  const perPage = options.isSearchResults
+    ? state.search.resultsPerPage
+    : state.moviesPerPage;
+
+  if (items.length > perPage) return items.slice(-perPage);
+
+  return items;
+};

@@ -1,5 +1,11 @@
 import BottomScreenObserver from './src/BottomScreenObserver.js';
-import { loadGenres, loadMovies, loadSearchResults, state } from './src/model.js';
+import {
+  getItemsToRender,
+  loadGenres,
+  loadMovies,
+  loadSearchResults,
+  state,
+} from './src/model.js';
 import MoviesView from './src/views/MoviesView.js';
 import SearchFormView from './src/views/SearchFormView.js';
 
@@ -12,7 +18,7 @@ const controlMovies = async () => {
 
     if (state.movies.length === 0) return MoviesView.renderNoMoviesFound();
 
-    MoviesView.render(state.movies);
+    MoviesView.render(getItemsToRender());
   } catch (error) {
     MoviesView.renderError();
   }
@@ -26,7 +32,7 @@ const controlSearchResults = async function (query) {
 
     if (state.search.results.length === 0) return MoviesView.renderNoMoviesFound();
 
-    MoviesView.render(state.search.results);
+    MoviesView.render(getItemsToRender({ isSearchResults: true }));
   } catch (error) {
     MoviesView.renderError();
   }
@@ -38,11 +44,11 @@ const controlBottomReached = async () => {
     if (hasQueried) {
       await loadSearchResults(state.search.query);
 
-      MoviesView.render(state.search.results.slice(-20), true);
+      MoviesView.render(getItemsToRender({ isSearchResults: true }), true);
     } else {
       await loadMovies();
 
-      MoviesView.render(state.movies.slice(-20), true);
+      MoviesView.render(getItemsToRender(), true);
     }
   } catch (error) {
     // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
