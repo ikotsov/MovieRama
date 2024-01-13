@@ -2,7 +2,7 @@ import { URL_MOVIE_IMAGE } from '../config.js';
 
 class MoviesView {
   #data;
-  #parentElement = document.querySelector('.movies');
+  #element = document.querySelector('.movies');
   #errorMessage = 'An error occurred 💥';
   #noMoviesMessage = 'No movies found 😢';
 
@@ -38,7 +38,7 @@ class MoviesView {
   }
 
   #clear() {
-    this.#parentElement.innerHTML = '';
+    this.#element.innerHTML = '';
   }
 
   attachRenderHandler(handler) {
@@ -50,29 +50,29 @@ class MoviesView {
     const markup = this.#generateMarkup();
 
     if (append) {
-      this.#parentElement.insertAdjacentHTML('beforeend', markup);
+      this.#element.insertAdjacentHTML('beforeend', markup);
     } else {
       this.#clear();
-      this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+      this.#element.insertAdjacentHTML('afterbegin', markup);
     }
   }
 
   renderSpinner() {
     const markup = `<div class="spinner"></div>`;
     this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#element.insertAdjacentHTML('afterbegin', markup);
   }
 
   renderError(message = this.#errorMessage) {
     const markup = `<div class="error"><p>${message}</p></div>`;
     this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#element.insertAdjacentHTML('afterbegin', markup);
   }
 
   renderNoMoviesFound(message = this.#noMoviesMessage) {
     const markup = `<div class="no-movies"><p>${message}</p></div>`;
     this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#element.insertAdjacentHTML('afterbegin', markup);
   }
 }
 
