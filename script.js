@@ -38,10 +38,10 @@ const controlSearchResults = async function (query) {
   }
 };
 
+const EMPTY_STRING = '';
 const controlBottomReached = async () => {
   try {
-    const hasQueried = state.search.query !== '';
-    if (hasQueried) {
+    if (state.search.query !== EMPTY_STRING) {
       await loadSearchResults(state.search.query);
 
       MoviesView.render(getItemsToRender({ isSearchResults: true }), true);
