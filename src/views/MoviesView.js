@@ -43,6 +43,15 @@ class MoviesView {
     window.addEventListener('load', handler);
   }
 
+  attachOnClickHandler(handler) {
+    this.#element.addEventListener('click', (event) => {
+      const movieElement = event.target.closest('.movie');
+      if (movieElement) {
+        handler(movieElement.dataset.id);
+      }
+    });
+  }
+
   render(data, append = false) {
     this.#data = data;
     const markup = this.#generateMarkup();

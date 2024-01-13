@@ -64,6 +64,7 @@ const controlBottomReached = async () => {
 
 const app = () => {
   MoviesView.attachRenderHandler(controlMovies);
+  MoviesView.attachOnClickHandler((id) => console.log(id));
   SearchFormView.attachOnTypeHandler(controlSearchResults);
 
   BottomScreenObserver.attachRenderHandler(controlBottomReached);
