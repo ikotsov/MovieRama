@@ -142,7 +142,7 @@ body {
   font-size: 1.5rem;
 }
 
-.loading-indicator {
+.bottom-loader {
   transform: translateY(100%);
   opacity: 0;
   font-size: 2rem;

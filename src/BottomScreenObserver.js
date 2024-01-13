@@ -1,5 +1,5 @@
 class BottomScreenObserver {
-  _loadingIndicator = document.querySelector('.loading-indicator');
+  _loadingIndicator = document.querySelector('.bottom-loader');
 
   _onScrollHandler(handler) {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
