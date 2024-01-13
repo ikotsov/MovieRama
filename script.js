@@ -13,7 +13,7 @@ const controlMovies = async () => {
     if (state.movies.length === 0) return MoviesView.renderNoMoviesFound();
 
     MoviesView.render(state.movies);
-  } catch (err) {
+  } catch (error) {
     MoviesView.renderError();
   }
 };
@@ -27,7 +27,7 @@ const controlSearchResults = async function (query) {
     if (state.search.results.length === 0) return MoviesView.renderNoMoviesFound();
 
     MoviesView.render(state.search.results);
-  } catch (err) {
+  } catch (error) {
     MoviesView.renderError();
   }
 };
@@ -44,7 +44,7 @@ const controlBottomReached = async () => {
 
       MoviesView.render(state.movies.slice(-20), true);
     }
-  } catch (err) {}
+  } catch (error) {}
 };
 
 const app = () => {
