@@ -29,9 +29,9 @@ const handleLoadSearchResults = async (query) => {
   try {
     await loadSearchResults(query);
 
-    if (state.search.results.length === 0) return MoviesView.renderNoMoviesFound();
+    if (state.movies.length === 0) return MoviesView.renderNoMoviesFound();
 
-    MoviesView.render(getItemsToRender({ isSearchResults: true }));
+    MoviesView.render(getItemsToRender());
   } catch (error) {
     MoviesView.renderError();
   }
@@ -48,10 +48,10 @@ const controlSearchResults = (query) => {
 const EMPTY_STRING = '';
 const controlBottomReached = async () => {
   try {
-    if (state.search.query !== EMPTY_STRING) {
-      await loadSearchResults(state.search.query);
+    if (state.query !== EMPTY_STRING) {
+      await loadSearchResults(state.query);
 
-      MoviesView.render(getItemsToRender({ isSearchResults: true }), true);
+      MoviesView.render(getItemsToRender(), true);
     } else {
       await loadMovies();
 

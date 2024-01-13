@@ -14,13 +14,7 @@ export const state = {
   movies: [],
   moviesPerPage: MOVIES_PER_PAGE,
   totalMovies: 0,
-  search: {
-    query: '',
-    results: [],
-    page: 0,
-    resultsPerPage: MOVIES_PER_PAGE,
-    totalResults: 0,
-  },
+  query: '',
 };
 
 const createMovieListUrlParams = (page) => {
@@ -84,46 +78,38 @@ const createSearchResultsParams = (query, page) => {
   return params;
 };
 
-const updateSearchResultsPage = (query) => {
-  if (query !== state.search.query) {
-    state.search.page = 1;
+const updatePageWhenSearch = (query) => {
+  if (query !== state.query) {
+    state.page = 1;
   } else {
-    state.search.page = state.search.page + 1;
+    state.page = state.page + 1;
   }
 };
 
 // TODO: use
-export const hasReachedSearchResultsEndPage = () => {
-  return (
-    state.search.totalResults === state.search.results.length &&
-    state.search.totalResults !== 0
-  );
+export const hasReachedEndPage = () => {
+  return state.totalMovies === state.movies.length && state.totalMovies !== 0;
 };
 
 export const loadSearchResults = async (query) => {
-  updateSearchResultsPage(query);
-  state.search.query = query;
-  const params = createSearchResultsParams(query, state.search.page);
+  updatePageWhenSearch(query);
+  state.query = query;
+  const params = createSearchResultsParams(query, state.page);
   try {
     const data = await fetchJsonData(`${URL_MOVIE_SEARCH}?${params}`);
-    state.search.totalResults = data.total_results;
+
+    state.totalMovies = data.total_results;
     const newResults = data.results.map(createMovie);
-    state.search.results =
-      state.search.page === 1
-        ? [...newResults]
-        : [...state.search.results, ...newResults];
+    state.movies =
+      state.page === 1 ? [...newResults] : [...state.movies, ...newResults];
   } catch (error) {
     throw error;
   }
 };
 
-export const getItemsToRender = (options = { isSearchResults: false }) => {
-  const items = options.isSearchResults ? state.search.results : state.movies;
-  const perPage = options.isSearchResults
-    ? state.search.resultsPerPage
-    : state.moviesPerPage;
+export const getItemsToRender = () => {
+  if (state.movies.length > state.moviesPerPage)
+    return state.movies.slice(-state.moviesPerPage);
 
-  if (items.length > perPage) return items.slice(-perPage);
-
-  return items;
+  return state.movies;
 };
