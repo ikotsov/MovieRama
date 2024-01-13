@@ -2,8 +2,8 @@ import {
   API_KEY,
   API_URL_GENRE_LIST,
   API_URL_MOVIE_LIST,
-  URL_MOVIE_SEARCH,
   LANGUAGE_CODE,
+  URL_MOVIE_SEARCH,
 } from './config.js';
 import { fetchJsonData } from './helpers.js';
 
@@ -79,9 +79,18 @@ const createSearchResultsParams = (query, page) => {
   return params;
 };
 
+const updateSearchResultsPage = (query) => {
+  if (query !== state.search.query) {
+    state.search.page = 1;
+  } else {
+    state.search.page = state.search.page + 1;
+  }
+};
+
 export const loadSearchResults = async (query) => {
+  updateSearchResultsPage(query);
   state.search.query = query;
-  const params = createSearchResultsParams(query, ++state.search.page);
+  const params = createSearchResultsParams(query, state.search.page);
   try {
     const data = await fetchJsonData(`${URL_MOVIE_SEARCH}?${params}`);
     const newResults = data.results.map(createMovie);
