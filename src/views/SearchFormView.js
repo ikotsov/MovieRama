@@ -13,8 +13,8 @@ class SearchFormView {
   }
 
   attachOnTypeHandler(handler) {
-    this.#inputElement.addEventListener('input', (e) => {
-      handler(e.target.value);
+    this.#inputElement.addEventListener('input', (event) => {
+      handler(event.target.value);
     });
   }
 }
