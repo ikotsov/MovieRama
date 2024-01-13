@@ -28,7 +28,6 @@ const controlSearchResults = async function (query) {
 
     MoviesView.render(state.search.results);
   } catch (err) {
-    console.log(err);
     MoviesView.renderError();
   }
 };
