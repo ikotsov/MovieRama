@@ -3,6 +3,7 @@ import {
   API_URL_GENRE_LIST,
   API_URL_MOVIE_LIST,
   LANGUAGE_CODE,
+  MOVIES_PER_PAGE,
   URL_MOVIE_SEARCH,
 } from './config.js';
 import { fetchJsonData } from './helpers.js';
@@ -11,10 +12,12 @@ export const state = {
   page: 0,
   genres: [],
   movies: [],
+  moviesPerPage: MOVIES_PER_PAGE,
   search: {
     query: '',
     results: [],
     page: 0,
+    resultsPerPage: MOVIES_PER_PAGE,
   },
 };
 

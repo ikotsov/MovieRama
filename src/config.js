@@ -8,3 +8,5 @@ export const URL_MOVIE_IMAGE = 'https://image.tmdb.org/t/p/w500';
 export const URL_MOVIE_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
 export const LANGUAGE_CODE = 'en-US';
+
+export const MOVIES_PER_PAGE = 20;
