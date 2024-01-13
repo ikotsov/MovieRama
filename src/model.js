@@ -13,11 +13,13 @@ export const state = {
   genres: [],
   movies: [],
   moviesPerPage: MOVIES_PER_PAGE,
+  totalMovies: 0,
   search: {
     query: '',
     results: [],
     page: 0,
     resultsPerPage: MOVIES_PER_PAGE,
+    totalResults: 0,
   },
 };
 
@@ -90,12 +92,20 @@ const updateSearchResultsPage = (query) => {
   }
 };
 
+export const hasReachedSearchResultsEndPage = () => {
+  return (
+    state.search.totalResults === state.search.results.length &&
+    state.search.totalResults !== 0
+  );
+};
+
 export const loadSearchResults = async (query) => {
   updateSearchResultsPage(query);
   state.search.query = query;
   const params = createSearchResultsParams(query, state.search.page);
   try {
     const data = await fetchJsonData(`${URL_MOVIE_SEARCH}?${params}`);
+    state.search.totalResults = data.total_results;
     const newResults = data.results.map(createMovie);
     state.search.results =
       state.search.page === 1
