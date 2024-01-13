@@ -11,7 +11,7 @@ export const fetchJsonData = async function (url) {
   }
 };
 
-export const debounce = (callback, delay = 30000) => {
+export const debounce = (callback, delay = 3000) => {
   let timer;
 
   return (...args) => {
