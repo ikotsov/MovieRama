@@ -8,7 +8,7 @@ class MoviesView {
 
   #generateMovieMarkup(movie) {
     return `
-    <article class="movie">
+    <article class="movie" data-id="${movie.id}">
       <img class="movie__picture" src='${URL_MOVIE_IMAGE}${movie.poster}' alt='Poster of ${movie.title}' />
       <div class="movie__content">
         <h3 class="movie__title">${movie.title}</h3>
