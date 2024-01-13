@@ -92,6 +92,7 @@ const updateSearchResultsPage = (query) => {
   }
 };
 
+// TODO: use
 export const hasReachedSearchResultsEndPage = () => {
   return (
     state.search.totalResults === state.search.results.length &&
