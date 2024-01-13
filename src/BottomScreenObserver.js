@@ -1,15 +1,15 @@
 class BottomScreenObserver {
-  #loadingIndicator = document.querySelector('.bottom-loader');
+  #bottomLoader = document.querySelector('.bottom-loader');
 
   #onScrollHandler(handler) {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     const hasReachedBottom = scrollTop + clientHeight >= scrollHeight;
     
     if (hasReachedBottom) {
-      this.#loadingIndicator.classList.add('show');
+      this.#bottomLoader.classList.add('show');
       handler();
     } else {
-      this.#loadingIndicator.classList.remove('show');
+      this.#bottomLoader.classList.remove('show');
     }
   }
 
