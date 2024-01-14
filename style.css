@@ -28,14 +28,16 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  color: var(--color-primary);
-}
-
 .main {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+/* GENERAL */
+a:link,
+a:visited {
+  color: var(--color-primary);
 }
 
 /* COMPONENTS */
