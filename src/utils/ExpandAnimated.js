@@ -9,7 +9,7 @@ class ExpandAnimated {
       element.style.transition = elementTransition;
 
       requestAnimationFrame(() => {
-        element.style.height = 0 + 'px';
+        element.style.height = '0px';
       });
     });
 
@@ -20,10 +20,11 @@ class ExpandAnimated {
     const containerHeight = element.scrollHeight;
     element.style.height = `${containerHeight}px`;
 
-    element.addEventListener('transitionend', function transitionEndHandler(e) {
+    const transitionEndHandler = () => {
       element.removeEventListener('transitionend', transitionEndHandler);
       element.style.height = null;
-    });
+    };
+    element.addEventListener('transitionend', transitionEndHandler);
 
     element.setAttribute('data-collapsed', 'false');
   }
