@@ -3,7 +3,11 @@ This repository contains the source code for a front-end project designed as par
 
 ## Setup and Running the Project
 
-This project uses [Parcel](https://parceljs.org/) as its web application bundler. To get started with running the project locally on your machine, follow the steps below:
+This project uses [Parcel](https://parceljs.org/) as its web application bundler. To get started with running the project locally on your machine, follow the steps below.
+
+Please note that simply downloading the code and opening the `index.html` file in a browser will not work correctly. Due to the use of ES6 modules (`type="module"` in the script tag), opening the file directly from the file system will result in Cross-Origin Resource Sharing (CORS) errors.
+
+To avoid these CORS errors, it's necessary to serve the project through a local server, which is automatically handled by Parcel.
 
 ### Prerequisites
 
