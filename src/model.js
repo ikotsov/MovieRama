@@ -113,6 +113,14 @@ export const loadSearchResults = async (query) => {
   }
 };
 
+const createReview = (review) => {
+  const content = `${review.content.slice(0, 80)}...`;
+  return {
+    content,
+    url: review.url,
+  };
+};
+
 const MAXIMUM_SIMILAR_MOVIES = 5;
 const MAXIMUM_REVIEWS = 2;
 const TRAILER_TYPE = 'Trailer';
@@ -124,15 +132,7 @@ export const loadMovieDetails = async (id) => {
     const similarMoviesData = await fetchJsonData(`${URL_MOVIE}/${id}/similar?${params}`);
 
     const trailer = videoData.results.find((video) => video.type === TRAILER_TYPE).name;
-    const reviews = reviewsData.results
-      .slice(0, MAXIMUM_REVIEWS)
-      .map((review) => {
-        const content = `${review.content.slice(0, 80)}...`;
-        return {
-          content,
-          url: review.url,
-        }
-      });
+    const reviews = reviewsData.results.slice(0, MAXIMUM_REVIEWS).map(createReview);
     const similarMovies = similarMoviesData.results
       .slice(0, MAXIMUM_SIMILAR_MOVIES)
       .map((movie) => movie.title);
