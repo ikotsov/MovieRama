@@ -74,7 +74,7 @@ const controlMovieClicked = async (id) => {
     MoviesView.renderMovieDetails(movie);
     MoviesView.expandDetails(id);
   } catch (error) {
-    // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
+    // TODO: Currently do nothing. Inform user that details have not been fetched because of an error.
   }
 };
 
