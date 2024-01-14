@@ -126,7 +126,13 @@ export const loadMovieDetails = async (id) => {
     const trailer = videoData.results.find((video) => video.type === TRAILER_TYPE).name;
     const reviews = reviewsData.results
       .slice(0, MAXIMUM_REVIEWS)
-      .map((review) => review.content);
+      .map((review) => {
+        const content = `${review.content.slice(0, 80)}...`;
+        return {
+          content,
+          url: review.url,
+        }
+      });
     const similarMovies = similarMoviesData.results
       .slice(0, MAXIMUM_SIMILAR_MOVIES)
       .map((movie) => movie.title);
