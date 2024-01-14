@@ -169,9 +169,23 @@ body {
 }
 
 .movie__details {
+  height: auto;
+  padding: 0 3rem;
   overflow: hidden;
   transition: height 0.3s ease-out;
-  height: auto;
+}
+
+.movie__trailer {
+  margin-bottom: 1rem;
+}
+
+.reviews {
+  margin-bottom: 1.5rem;
+}
+
+.reviews__list,
+.similar__list {
+  margin-left: 3rem;
 }
 
 .bottom-loader {

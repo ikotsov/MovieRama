@@ -57,9 +57,15 @@ class MoviesView {
   #generateMovieDetailsMarkup(details) {
     return `
     <div class="movie__details">
-      <div class="movie__trailer">${details.trailer}</div>
-      <ul class="reviews__list">${this.#generateReviewsListMarkup(details.reviews)}</ul>
-      <ul class="similar__list">${this.#generateSimilarListMarkup(details.similar)}</ul>
+      <div class="movie__trailer">Video trailer: ${details.trailer}</div>
+      <div class="reviews">
+        <p class="reviews__heading">Reviews:</p>
+        <ul class="reviews__list">${this.#generateReviewsListMarkup(details.reviews)}</ul>
+      </div>
+      <div class="similar">
+        <p class="similar__heading">Similar Movies:</p>
+        <ul class="similar__list">${this.#generateSimilarListMarkup(details.similar)}</ul>
+      </div>
     </div>`;
   }
 
