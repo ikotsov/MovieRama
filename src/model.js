@@ -17,12 +17,18 @@ export const state = {
   query: '',
 };
 
+const appendCommonParams = (params) => {
+  params.append('api_key', API_KEY);
+  params.append('language', LANGUAGE_CODE);
+
+  return params;
+}
+
 const createMovieListUrlParams = (page) => {
   const params = new URLSearchParams();
-  params.append('api_key', API_KEY);
   params.append('page', page);
-  params.append('language', LANGUAGE_CODE);
-  return params;
+
+  return appendCommonParams(params);
 };
 
 const createMovie = (movie) => {
@@ -71,11 +77,10 @@ export const loadGenres = async () => {
 
 const createSearchResultsParams = (query, page) => {
   const params = new URLSearchParams();
-  params.append('api_key', API_KEY);
   params.append('page', page);
-  params.append('language', LANGUAGE_CODE);
   params.append('query', query);
-  return params;
+
+  return appendCommonParams(params);
 };
 
 const updatePageWhenSearch = (query) => {
