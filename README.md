@@ -1,6 +1,34 @@
 ## Introduction
 This repository contains the source code for a front-end project designed as part of an assignment.
 
+## Setup and Running the Project
+
+This project uses [Parcel](https://parceljs.org/) as its web application bundler. To get started with running the project locally on your machine, follow the steps below:
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/) installed on your system. This will include npm (Node Package Manager), which is required to install dependencies and run the project.
+
+### Installation
+
+1. Clone the repository to your local machine using your preferred method (GitHub GUI, SSH, or HTTPS).
+
+2. Navigate to the project directory in your terminal or command prompt.
+
+3. Run the following command to install all the required dependencies:
+    ```sh
+    npm install
+    ```
+### Running the project
+
+After installing the dependencies, you can start the project using Parcel:
+
+1. In the project directory, run the following command to build and run the project:
+    ```sh
+    npx parcel index.html
+    ```
+2. Parcel will start a local development server. Once the build is complete, it will provide you with a URL, usually http://localhost:1234, where you can view the application in your web browser.
+
 ## Architecture
 The project follows the Model-View-Controller (MVC) architectural pattern. This separation of concerns allows for better code organization and scalability. The MVC architecture is depicted as follows:
 
