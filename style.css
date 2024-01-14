@@ -28,6 +28,10 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  color: var(--color-primary);
+}
+
 .main {
   display: flex;
   align-items: center;
@@ -137,7 +141,7 @@ body {
   cursor: pointer;
 }
 
-.movie_content {
+.movie__content {
   display: flex;
 }
 
@@ -197,5 +201,23 @@ body {
     transform: translateY(0);
     opacity: 1;
     transition: opacity 0.3s ease-in-out, transform 0.2s ease-out;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .search {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .movie__content {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .movie__picture {
+    width: 100%;
+    height: auto;
   }
 }
