@@ -68,7 +68,7 @@ const controlMovieClicked = async (id) => {
   try {
     await loadMovieDetails(idCasted);
     const movie = state.movies.find((movie) => movie.id === idCasted);
-    console.log(movie);
+    MoviesView.renderMovieDetails(movie);
   } catch (error) {
     // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
   }
