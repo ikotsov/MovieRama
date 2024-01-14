@@ -129,7 +129,7 @@ body {
 
 /* MAIN CONTENT */
 .movie {
-  max-width: 70rem;
+  max-width: 80rem;
   margin: 0 3rem 5rem;
   border: 1px solid var(--color-white-1);
   border-radius: 0.7rem;
