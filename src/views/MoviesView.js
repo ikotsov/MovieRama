@@ -39,7 +39,7 @@ class MoviesView {
   #generateReviewsListMarkup(reviews) {
     const listItems = reviews.map((element) => {
       return `
-      <li>
+      <li class="reviews__item">
         <span>${element.content}</span>
         <a href="${element.url}" target="_blank">more</a>
       </li>`;
@@ -49,7 +49,7 @@ class MoviesView {
 
   #generateSimilarListMarkup(similar) {
     const listItems = similar.map((element) => {
-      return `<li>${element}</li>`;
+      return `<li class="similar__item">${element}</li>`;
     });
     return listItems.join('');
   }
@@ -58,8 +58,8 @@ class MoviesView {
     return `
     <div class="movie__details">
       <div class="movie__trailer">${details.trailer}</div>
-      <ul class="movie__reviews">${this.#generateReviewsListMarkup(details.reviews)}</ul>
-      <ul class="movie__similar">${this.#generateSimilarListMarkup(details.similar)}</ul>
+      <ul class="reviews__list">${this.#generateReviewsListMarkup(details.reviews)}</ul>
+      <ul class="similar__list">${this.#generateSimilarListMarkup(details.similar)}</ul>
     </div>`;
   }
 
