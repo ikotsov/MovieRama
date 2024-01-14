@@ -38,7 +38,7 @@ class MoviesView {
       return `
       <li>
         <span>${element.content}</span>
-        <a href="${element.url}">more</a>
+        <a href="${element.url}" target="_blank">more</a>
       </li>`;
     });
     return listItems.join('');
