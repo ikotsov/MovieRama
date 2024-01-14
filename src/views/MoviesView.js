@@ -9,26 +9,28 @@ class MoviesView {
   #generateMovieMarkup(movie) {
     return `
     <article class="movie" data-id="${movie.id}">
-      <img class="movie__picture" src='${URL_MOVIE_IMAGE}${
-      movie.poster
-    }' alt='Poster of ${movie.title}' />
-      <div class="movie__content">
-        <h3 class="movie__title">${movie.title}</h3>
-        <div class="movie__info">
-          <div class="movie__row">
-            <p>Genres:</p>
-            <p>${movie.genres.join(', ')}</p>
+      <div class="movie_content">
+        <img class="movie__picture" src='${URL_MOVIE_IMAGE}${
+        movie.poster
+      }' alt='Poster of ${movie.title}' />
+        <div class="movie__main">
+          <h3 class="movie__title">${movie.title}</h3>
+          <div class="movie__info">
+            <div class="movie__row">
+              <p>Genres:</p>
+              <p>${movie.genres.join(', ')}</p>
+            </div>
+            <div class="movie__row">
+              <p>Release Year:</p>
+              <p>${movie.releaseYear}</p>
+            </div>
+            <div class="movie__row">
+              <p>Votes:</p>
+              <p>${movie.votes}</p>
+            </div>
           </div>
-          <div class="movie__row">
-            <p>Release Year:</p>
-            <p>${movie.releaseYear}</p>
-          </div>
-          <div class="movie__row">
-            <p>Votes:</p>
-            <p>${movie.votes}</p>
-          </div>
+          <p class="movie__description">${movie.description}</p>
         </div>
-        <p class="movie__description">${movie.description}</p>
       </div>
     </article>`;
   }
