@@ -1,4 +1,5 @@
 import { URL_MOVIE_IMAGE } from '../config.js';
+import ExpandAnimated from '../ExpandAnimated.js';
 
 class MoviesView {
   #data;
@@ -11,8 +12,8 @@ class MoviesView {
     <article class="movie" data-id="${movie.id}">
       <div class="movie_content">
         <img class="movie__picture" src='${URL_MOVIE_IMAGE}${
-        movie.poster
-      }' alt='Poster of ${movie.title}' />
+      movie.poster
+    }' alt='Poster of ${movie.title}' />
         <div class="movie__main">
           <h3 class="movie__title">${movie.title}</h3>
           <div class="movie__info">
@@ -129,6 +130,13 @@ class MoviesView {
 
     const markup = this.#generateMovieDetailsMarkup(movie.details);
     element.insertAdjacentHTML('beforeend', markup);
+  }
+
+  expandDetails(id) {
+    const movieElement = this.#getMovieElementBy(id);
+    const movieDetails = this.#getMovieDetailsElementBy(movieElement);
+
+    ExpandAnimated.run(movieElement, movieDetails);
   }
 }
 

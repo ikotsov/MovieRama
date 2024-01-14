@@ -1,4 +1,5 @@
 import BottomScreenObserver from './src/BottomScreenObserver.js';
+import { debounce } from './src/helpers.js';
 import {
   getItemsToRender,
   loadGenres,
@@ -9,7 +10,6 @@ import {
 } from './src/model.js';
 import MoviesView from './src/views/MoviesView.js';
 import SearchFormView from './src/views/SearchFormView.js';
-import { debounce } from './src/helpers.js';
 
 const controlMovies = async () => {
   try {
@@ -69,6 +69,7 @@ const controlMovieClicked = async (id) => {
     await loadMovieDetails(idCasted);
     const movie = state.movies.find((movie) => movie.id === idCasted);
     MoviesView.renderMovieDetails(movie);
+    MoviesView.expandDetails(id);
   } catch (error) {
     // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
   }
