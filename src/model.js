@@ -127,6 +127,9 @@ const MAXIMUM_REVIEWS = 2;
 const TRAILER_TYPE = 'Trailer';
 export const loadMovieDetails = async (id) => {
   const params = createCommonParams();
+  const movie = state.movies.find((movie) => movie.id === id);
+  if (movie && movie.details) return;
+
   try {
     const videoData = await fetchJsonData(`${URL_MOVIE}/${id}/videos?${params}`);
     const reviewsData = await fetchJsonData(`${URL_MOVIE}/${id}/reviews?${params}`);
