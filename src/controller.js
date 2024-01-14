@@ -7,6 +7,7 @@ import {
   loadMovies,
   loadSearchResults,
   state,
+  hasReachedEndPage,
 } from './model.js';
 import MoviesView from './views/MoviesView.js';
 import SearchFormView from './views/SearchFormView.js';
@@ -48,6 +49,8 @@ const controlSearchResults = (query) => {
 
 const EMPTY_STRING = '';
 const controlBottomReached = async () => {
+  if (hasReachedEndPage()) return;
+
   try {
     if (state.query !== EMPTY_STRING) {
       await loadSearchResults(state.query);

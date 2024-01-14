@@ -94,7 +94,6 @@ const updatePageWhenSearch = (query) => {
   }
 };
 
-// TODO: use
 export const hasReachedEndPage = () => {
   return state.totalMovies === state.movies.length && state.totalMovies !== 0;
 };
