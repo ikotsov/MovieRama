@@ -24,7 +24,7 @@ const createCommonParams = () => {
   params.append('language', LANGUAGE_CODE);
 
   return params;
-}
+};
 
 const createMovieListUrlParams = (page) => {
   const params = createCommonParams();
@@ -107,8 +107,7 @@ export const loadSearchResults = async (query) => {
 
     state.totalMovies = data.total_results;
     const newResults = data.results.map(createMovie);
-    state.movies =
-      state.page === 1 ? [...newResults] : [...state.movies, ...newResults];
+    state.movies = state.page === 1 ? [...newResults] : [...state.movies, ...newResults];
   } catch (error) {
     throw error;
   }
@@ -125,9 +124,19 @@ export const loadMovieDetails = async (id) => {
     const similarMoviesData = await fetchJsonData(`${URL_MOVIE}/${id}/similar?${params}`);
 
     const trailer = videoData.results.find((video) => video.type === TRAILER_TYPE).name;
-    const reviews = reviewsData.results.slice(0, MAXIMUM_REVIEWS).map((review) => review.content);
-    const similarMovies = similarMoviesData.results.slice(0, MAXIMUM_SIMILAR_MOVIES).map((movie) => movie.title);
+    const reviews = reviewsData.results
+      .slice(0, MAXIMUM_REVIEWS)
+      .map((review) => review.content);
+    const similarMovies = similarMoviesData.results
+      .slice(0, MAXIMUM_SIMILAR_MOVIES)
+      .map((movie) => movie.title);
 
+    const details = { trailer, reviews, similar: similarMovies };
+
+    const movieIndex = state.movies.findIndex((movie) => movie.id === id);
+    if (movieIndex !== -1) {
+      state.movies[movieIndex] = { ...state.movies[movieIndex], details };
+    }
   } catch (error) {
     throw error;
   }
