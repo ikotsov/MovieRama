@@ -1,5 +1,5 @@
-import BottomScreenObserver from './src/BottomScreenObserver.js';
-import { debounce } from './src/helpers.js';
+import BottomScreenObserver from './BottomScreenObserver.js';
+import { debounce } from './helpers.js';
 import {
   getItemsToRender,
   loadGenres,
@@ -7,9 +7,9 @@ import {
   loadMovies,
   loadSearchResults,
   state,
-} from './src/model.js';
-import MoviesView from './src/views/MoviesView.js';
-import SearchFormView from './src/views/SearchFormView.js';
+} from './model.js';
+import MoviesView from './views/MoviesView.js';
+import SearchFormView from './views/SearchFormView.js';
 
 const controlMovies = async () => {
   try {
