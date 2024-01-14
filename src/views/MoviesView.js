@@ -72,6 +72,10 @@ class MoviesView {
     return document.querySelector(`[data-id="${id}"]`);
   }
 
+  #getMovieDetailsElementBy(element) {
+    return element.querySelector('.movie__details');
+  }
+
   attachRenderHandler(handler) {
     window.addEventListener('load', handler);
   }
@@ -117,6 +121,10 @@ class MoviesView {
 
   renderMovieDetails(movie) {
     const element = this.#getMovieElementBy(movie.id);
+
+    const existingDetails = this.#getMovieDetailsElementBy(element);
+    if (existingDetails) return;
+
     const markup = this.#generateMovieDetailsMarkup(movie.details);
     element.insertAdjacentHTML('beforeend', markup);
   }
