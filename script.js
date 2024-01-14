@@ -2,6 +2,7 @@ import BottomScreenObserver from './src/BottomScreenObserver.js';
 import {
   getItemsToRender,
   loadGenres,
+  loadMovieDetails,
   loadMovies,
   loadSearchResults,
   state,
@@ -35,13 +36,13 @@ const handleLoadSearchResults = async (query) => {
   } catch (error) {
     MoviesView.renderError();
   }
-}
+};
 
 const loadSearchResultsDebounced = debounce(handleLoadSearchResults, 500);
 
 const controlSearchResults = (query) => {
   MoviesView.renderSpinner();
-  
+
   loadSearchResultsDebounced(query);
 };
 
@@ -62,9 +63,20 @@ const controlBottomReached = async () => {
   }
 };
 
+const controlMovieClicked = async (id) => {
+  const idCasted = Number(id);
+  try {
+    await loadMovieDetails(idCasted);
+    const movie = state.movies.find((movie) => movie.id === idCasted);
+    console.log(movie);
+  } catch (error) {
+    // TODO: Currently do nothing. Inform user that no more movies can be fetched because of an error.
+  }
+};
+
 const app = () => {
   MoviesView.attachRenderHandler(controlMovies);
-  MoviesView.attachOnClickHandler((id) => console.log(id));
+  MoviesView.attachOnClickHandler(controlMovieClicked);
   SearchFormView.attachOnTypeHandler(controlSearchResults);
 
   BottomScreenObserver.attachRenderHandler(controlBottomReached);
