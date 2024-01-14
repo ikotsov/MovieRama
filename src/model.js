@@ -113,8 +113,9 @@ export const loadSearchResults = async (query) => {
   }
 };
 
+const MAXIMUM_REVIEWS_CHARACTERS = 80;
 const createReview = (review) => {
-  const content = `${review.content.slice(0, 80)}...`;
+  const content = `${review.content.slice(0, MAXIMUM_REVIEWS_CHARACTERS)}...`;
   return {
     content,
     url: review.url,
