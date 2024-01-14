@@ -5,6 +5,7 @@ import {
   LANGUAGE_CODE,
   MOVIES_PER_PAGE,
   URL_MOVIE_SEARCH,
+  URL_MOVIE,
 } from './config.js';
 import { fetchJsonData } from './helpers.js';
 
@@ -17,7 +18,8 @@ export const state = {
   query: '',
 };
 
-const appendCommonParams = (params) => {
+const createCommonParams = () => {
+  const params = new URLSearchParams();
   params.append('api_key', API_KEY);
   params.append('language', LANGUAGE_CODE);
 
@@ -25,10 +27,10 @@ const appendCommonParams = (params) => {
 }
 
 const createMovieListUrlParams = (page) => {
-  const params = new URLSearchParams();
+  const params = createCommonParams();
   params.append('page', page);
 
-  return appendCommonParams(params);
+  return params;
 };
 
 const createMovie = (movie) => {
@@ -76,11 +78,11 @@ export const loadGenres = async () => {
 };
 
 const createSearchResultsParams = (query, page) => {
-  const params = new URLSearchParams();
+  const params = createCommonParams();
   params.append('page', page);
   params.append('query', query);
 
-  return appendCommonParams(params);
+  return params;
 };
 
 const updatePageWhenSearch = (query) => {
@@ -107,6 +109,25 @@ export const loadSearchResults = async (query) => {
     const newResults = data.results.map(createMovie);
     state.movies =
       state.page === 1 ? [...newResults] : [...state.movies, ...newResults];
+  } catch (error) {
+    throw error;
+  }
+};
+
+const MAXIMUM_SIMILAR_MOVIES = 5;
+const MAXIMUM_REVIEWS = 2;
+const TRAILER_TYPE = 'Trailer';
+export const loadMovieDetails = async (id) => {
+  const params = createCommonParams();
+  try {
+    const videoData = await fetchJsonData(`${URL_MOVIE}/${id}/videos?${params}`);
+    const reviewsData = await fetchJsonData(`${URL_MOVIE}/${id}/reviews?${params}`);
+    const similarMoviesData = await fetchJsonData(`${URL_MOVIE}/${id}/similar?${params}`);
+
+    const trailer = videoData.results.find((video) => video.type === TRAILER_TYPE).name;
+    const reviews = reviewsData.results.slice(0, MAXIMUM_REVIEWS).map((review) => review.content);
+    const similarMovies = similarMoviesData.results.slice(0, MAXIMUM_SIMILAR_MOVIES).map((movie) => movie.title);
+
   } catch (error) {
     throw error;
   }
