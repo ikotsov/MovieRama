@@ -1,5 +1,5 @@
-import BottomScreenObserver from './BottomScreenObserver.js';
-import { debounce } from './helpers.js';
+import BottomScreenObserver from './helpers/BottomScreenObserver.js';
+import { debounce } from './utils/debounce.js';
 import {
   getItemsToRender,
   loadGenres,

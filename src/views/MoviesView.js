@@ -1,5 +1,5 @@
 import { URL_MOVIE_IMAGE } from '../config.js';
-import ExpandAnimated from '../ExpandAnimated.js';
+import ExpandAnimated from '../utils/ExpandAnimated.js';
 
 class MoviesView {
   #data;

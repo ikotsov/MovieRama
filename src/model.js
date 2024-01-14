@@ -7,7 +7,7 @@ import {
   URL_MOVIE_SEARCH,
   URL_MOVIE,
 } from './config.js';
-import { fetchJsonData } from './helpers.js';
+import { fetchJsonData } from './helpers/fetchJsonData.js';
 
 export const state = {
   page: 0,
