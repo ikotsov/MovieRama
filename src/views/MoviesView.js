@@ -9,7 +9,9 @@ class MoviesView {
   #generateMovieMarkup(movie) {
     return `
     <article class="movie" data-id="${movie.id}">
-      <img class="movie__picture" src='${URL_MOVIE_IMAGE}${movie.poster}' alt='Poster of ${movie.title}' />
+      <img class="movie__picture" src='${URL_MOVIE_IMAGE}${
+      movie.poster
+    }' alt='Poster of ${movie.title}' />
       <div class="movie__content">
         <h3 class="movie__title">${movie.title}</h3>
         <div class="movie__info">
@@ -31,12 +33,43 @@ class MoviesView {
     </article>`;
   }
 
+  #generateReviewsListMarkup(reviews) {
+    const listItems = reviews.map((element) => {
+      return `
+      <li>
+        <span>${element.content}</span>
+        <a href="${element.url}">more</a>
+      </li>`;
+    });
+    return listItems.join('');
+  }
+
+  #generateSimilarListMarkup(similar) {
+    const listItems = similar.map((element) => {
+      return `<li>${element}</li>`;
+    });
+    return listItems.join('');
+  }
+
+  #generateMovieDetailsMarkup(details) {
+    return `
+    <div class="movie__details">
+      <div class="movie__trailer">${details.trailer}</div>
+      <ul class="movie__reviews">${this.#generateReviewsListMarkup(details.reviews)}</ul>
+      <ul class="movie__similar">${this.#generateSimilarListMarkup(details.similar)}</ul>
+    </div>`;
+  }
+
   #generateMarkup() {
     return this.#data.map((movie) => this.#generateMovieMarkup(movie)).join('');
   }
 
   #clear() {
     this.#element.innerHTML = '';
+  }
+
+  #getMovieElementBy(id) {
+    return document.querySelector(`[data-id="${id}"]`);
   }
 
   attachRenderHandler(handler) {
@@ -80,6 +113,12 @@ class MoviesView {
     const markup = `<div class="no-movies"><p>${message}</p></div>`;
     this.#clear();
     this.#element.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderMovieDetails(movie) {
+    const element = this.#getMovieElementBy(movie.id);
+    const markup = this.#generateMovieDetailsMarkup(movie.details);
+    element.insertAdjacentHTML('beforeend', markup);
   }
 }
 
