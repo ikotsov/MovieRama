@@ -1,11 +1,11 @@
 class ExpandAnimated {
   #collapse(element) {
-    const sectionHeight = element.scrollHeight;
+    const containerHeight = element.scrollHeight;
     const elementTransition = element.style.transition;
     element.style.transition = '';
 
     requestAnimationFrame(() => {
-      element.style.height = sectionHeight + 'px';
+      element.style.height = `${containerHeight}px`;
       element.style.transition = elementTransition;
 
       requestAnimationFrame(() => {
@@ -17,8 +17,8 @@ class ExpandAnimated {
   }
 
   #expand(element) {
-    const sectionHeight = element.scrollHeight;
-    element.style.height = sectionHeight + 'px';
+    const containerHeight = element.scrollHeight;
+    element.style.height = `${containerHeight}px`;
 
     element.addEventListener('transitionend', function transitionEndHandler(e) {
       element.removeEventListener('transitionend', transitionEndHandler);
