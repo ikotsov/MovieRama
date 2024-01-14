@@ -60,3 +60,4 @@ Below is the folder structure for the project, providing an overview of how the 
 ## Possible Improvements
 
 - **Mutation Observer**: Exploring the Mutation Observer could be a potential benefit for simplifying dynamic DOM manipulations.
+- **Movies View**: Investigate if splitting the class into two classes,`MoviesView` and `MovieView` would make the code easier to reason about and to modify.
